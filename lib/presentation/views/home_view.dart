@@ -24,36 +24,34 @@ class HomeView extends StatelessWidget {
         listener: (context, state) {},
         builder: (context, state) {
           var cubit = BlocProvider.of<AppCubit>(context);
-          return RefreshIndicator(
-            onRefresh: () => cubit.getAllHotels(),
-            child: Conditional.single(
-                context: context,
-                conditionBuilder: (context) =>
-                    state is GetAllHotelsDataSuccessState,
-                widgetBuilder: (context) => BuildHomeScreen(cubit: cubit),
-                fallbackBuilder: (context) =>
-                    state is GetAllHotelsDataLoadingState
-                        ? const Center(
-                            child: CircularProgressIndicator(),
-                          )
-                        : const Center(
-                            child: Text('No Internet Connection'),
-                          )),
-          );
-          // if (state is GetAllHotelsDataSuccessState) {
-          //   return BuildHomeScreen(cubit: cubit);
-          // } else if (state is GetAllHotelsDataLoadingState) {
-          //   return const Center(
-          //     child: CircularProgressIndicator(),
-          //   );
-          // } else if (state is GetAllHotelsDataFailureState) {
-          //   return const Center(
-          //     child: Text('No Internet Connection'),
-          //   );
-          // } else {
-          //   // to handle
-          //   return BuildHomeScreen(cubit: cubit);
-          // }
+
+          if (state is GetAllHotelsDataSuccessState) {
+            return BuildHomeScreen(cubit: cubit);
+          } else if (state is GetAllHotelsDataLoadingState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else if (state is GetAllHotelsDataFailureState) {
+            return const Center(
+              child: Text('No Internet Connection'),
+            );
+          } else {
+            // to handle
+            return BuildHomeScreen(cubit: cubit);
+          }
+          // child: Conditional.single(
+          //     context: context,
+          //     conditionBuilder: (context) =>
+          //         state is GetAllHotelsDataSuccessState,
+          //     widgetBuilder: (context) => BuildHomeScreen(cubit: cubit),
+          //     fallbackBuilder: (context) =>
+          //         state is GetAllHotelsDataLoadingState
+          //             ? const Center(
+          //                 child: CircularProgressIndicator(),
+          //               )
+          //             : const Center(
+          //                 child: Text('No Internet Connection'),
+          //               )),
         },
       ),
     ));
