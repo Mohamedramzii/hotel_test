@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../view_model/Cubits/cubit/app_cubit.dart';
+import '../../../view_model/Cubits/cubit/app_cubit.dart';
 
 class FiltersSliderWidget extends StatelessWidget {
   const FiltersSliderWidget({super.key, required this.cubit});

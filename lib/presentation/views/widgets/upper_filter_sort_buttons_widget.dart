@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hotel_test/presentation/views/widgets/filters_btmSheet_widgets/filter_btmsheet_widget.dart';
 
 import '../../view_model/Cubits/cubit/app_cubit.dart';
-import 'filter_btmsheet_widget.dart';
 import 'sort_btmsheet_widget.dart';
 
 class UpperFilterAndSortButtons extends StatelessWidget {

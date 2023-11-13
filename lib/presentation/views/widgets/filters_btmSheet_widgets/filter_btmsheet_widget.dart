@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:hotel_test/presentation/views/widgets/filters_hotelclass_widget.dart';
-import '../../view_model/Cubits/cubit/app_cubit.dart';
+import '../../../view_model/Cubits/cubit/app_cubit.dart';
+import 'filters_hotelclass_widget.dart';
 import 'filters_rating_widget.dart';
 import 'filters_slider_widget.dart';
 
