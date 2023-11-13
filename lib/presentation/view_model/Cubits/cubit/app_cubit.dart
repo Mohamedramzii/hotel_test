@@ -37,6 +37,7 @@ class AppCubit extends Cubit<AppState> {
   resetAllFilters() {
     sliderValue = 20;
     currentRateIndex=0;
+    currentHotelClassIndex=0;
     emit(ResetFiltersSuccessState());
   }
 
@@ -70,6 +71,12 @@ class AppCubit extends Cubit<AppState> {
   int currentRateIndex = 0;
   filtersRateIndexChange(int index) {
     currentRateIndex = index;
+    emit(FiltersRateIndexChangedSuccessState());
+  }
+
+  int currentHotelClassIndex=0;
+  filtersHotelClassIndexChange(int index) {
+    currentHotelClassIndex = index;
     emit(FiltersRateIndexChangedSuccessState());
   }
 }

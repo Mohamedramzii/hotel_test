@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:hotel_test/presentation/views/widgets/filters_hotelclass_widget.dart';
 import '../../view_model/Cubits/cubit/app_cubit.dart';
 import 'filters_rating_widget.dart';
 import 'filters_slider_widget.dart';
@@ -8,13 +9,13 @@ import 'filters_slider_widget.dart';
 import 'filters_header_widget.dart';
 
 class FilterBtmSheet extends StatefulWidget {
-  const FilterBtmSheet({
+  FilterBtmSheet({
     super.key,
     required this.cubit,
   });
 
   final AppCubit cubit;
-
+  List<int> hotelclass = [1, 2, 3, 4, 5];
   @override
   State<FilterBtmSheet> createState() => _FilterBtmSheetState();
 }
@@ -65,8 +66,35 @@ class _FilterBtmSheetState extends State<FilterBtmSheet> {
                     SizedBox(
                       height: 20.h,
                     ),
-                    const Text(
-                        'Sorry but time is not on my side to think for a way to create this widget but it needs custom paint, thanks in advance'),
+                    SizedBox(
+                      height: 50.h,
+                      child: ListView.separated(
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return GestureDetector(
+                              onTap: (){
+                                widget.cubit.filtersHotelClassIndexChange(index);
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color:
+                                            widget.cubit.currentHotelClassIndex ==
+                                                    index
+                                                ? Colors.black
+                                                : Colors.orange),
+                                    borderRadius: BorderRadius.circular(10.r)),
+                                child: FiltersHotelClassWidget(
+                                    rate: widget.hotelclass[index]),
+                              ),
+                            );
+                          },
+                          separatorBuilder: (context, index) => SizedBox(
+                                width: 15.w,
+                              ),
+                          itemCount: widget.hotelclass.length),
+                    ),
+
                     SizedBox(
                       height: 20.h,
                     ),
